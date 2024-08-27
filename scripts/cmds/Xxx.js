@@ -76,7 +76,7 @@ module.exports = {
 
       await api.sendMessage('Please Wait...⏳', event.threadID);
 
-      const apiUrl = `https://zetsd-blbw.onrender.com/generate-image?prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&sampler=Euler%20a&width=${width}&height=${height}`;
+      const apiUrl = `https://zetsd-53sv.onrender.com/generate-image?prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&sampler=Euler%20a&width=${width}&height=${height}`;
 
       const response = await axios.get(apiUrl, { responseType: 'stream' });
 
