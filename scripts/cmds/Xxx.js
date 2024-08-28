@@ -11,10 +11,10 @@ module.exports = {
     hasPermissions: 0,
     description: "Generate unique images using a specified model",
     category: "ai",
-    guide: "{pn} <prompt> [-r <ratio>] [-m <modelIndex>] [-st <steps>] [-c <cfg_scale>]"
+    guide: "{pn} <prompt> [-r <ratio>] [-m <modelIndex>] [-st <steps>] [-c <cfg_scale>] [-l <lora:weight>]"
   },
 
-  onStart: async function ({ api, args, event, message }) {
+onStart: async function ({ api, args, event, message }) {
     try {
       const aspectRatioMap = {
         '1:1': { width: 1024, height: 1024 },
@@ -25,9 +25,17 @@ module.exports = {
         '7:4': { width: 1024, height: 585 },
         '4:7': { width: 585, height: 1024 },
         '12:5': { width: 1024, height: 426 },
-        '5:12': { width: 426, height: 1024 },
+       '5:12': { width: 426, height: 1024 },
         '3:2': { width: 1024, height: 682 },
         '2:3': { width: 682, height: 1024 }
+      };
+
+      const loras = {
+        1: "NijiAnimeStyleXL-v1",
+        2: "MidjourneyAnimeStyleXL-v1",
+        3: "ExtraDetailerXL-v1",
+        4: "DetailTweakerXL-3.0",
+        5: "STYLESPONYXL-RARv0.4Animagine"
       };
 
       let prompt = '';
@@ -36,6 +44,7 @@ module.exports = {
       let modelIndex = 1;
       let steps;
       let cfg_scale;
+      let loraWeights = {};
 
       for (let i = 0; i < args.length; i++) {
         if (args[i] === '-r') {
@@ -69,6 +78,18 @@ module.exports = {
             cfg_scale = undefined;
           }
           i++;
+        } else if (args[i] === '-l') {
+          const loraNumbers = args[i + 1].split(',');
+          loraNumbers.forEach((num, index) => {
+            const loraName = loras[num.trim()];
+            if (loraName) {
+              // Assign weight in decreasing order for each subsequent LoRA
+              loraWeights[loraName] = (loraNumbers.length - index).toString();
+            } else {
+              api.sendMessage(`Invalid LoRA number: ${num}`, event.threadID, event.messageID);
+            }
+          });
+          i++;
         } else {
           prompt += args[i] + ' ';
         }
@@ -76,7 +97,7 @@ module.exports = {
       prompt = prompt.trim();
 
       if (!prompt) {
-        const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝙨𝙩𝙚𝙥𝙨 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦\n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 9:16 -m 2 -st 30 -c 7\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐫𝐚𝐭𝐢𝐨 : \n[𝙓𝙭 𝙧𝙖𝙩𝙞𝙤]\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐦𝐨𝐝𝐞𝐥𝐬 : \n[𝙓𝙭 𝙢𝙤𝙙𝙚𝙡]";
+        const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝙨𝙩𝙚𝙥𝙴 -𝙡 𝘭𝘰𝘳𝘢𝘴 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦\n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 9:16 -m 2 -st 30 -l 4,1 -c 7\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐫𝐚𝐭𝐢𝐨 : \n[𝙓𝙭 𝙧𝙖𝙩𝙞𝙤]\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐦𝐨𝐝𝐞𝐥𝐬 : \n[𝙓𝙭 𝙢𝙤𝘥𝙚𝙡]\n\n Pour les LoRA : \n[𝙓𝙭 𝙡𝙤𝙧𝙖]";
         return api.sendMessage(guideMessage, event.threadID, event.messageID);
       }
 
@@ -90,10 +111,21 @@ module.exports = {
         return api.sendMessage(modelGuide, event.threadID, event.messageID);
       }
 
+if (prompt.toLowerCase() === "lora") {
+        const loraGuide = "◉ 𝐋𝐎𝐑𝐀𝐒 𝐗𝐗 ◉ \n \n1: Niji Anime \n2: Midjouney Anime \n3: ExtraDetaillerXL\n4: DetailTweaker 3.0\n5: StylePony Animagine";
+        return api.sendMessage(loraGuide, event.threadID, event.messageID);
+      }
+
+      // Créer la chaîne de LoRA à partir des poids
+      let loraString = '';
+      for (const [loraName, weight] of Object.entries(loraWeights)) {
+        loraString += `${loraName}:${weight},`;
+      }
+      loraString = loraString.slice(0, -1); // Retire la virgule finale
+
       await api.sendMessage('Please Wait...🖌️', event.threadID);
 
-      // Construire l'URL de l'API avec les nouveaux paramètres
-      const apiUrl = `https://zetsd-53sv.onrender.com/generate-image?prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&sampler=Euler%20a&width=${width}&height=${height}${steps !== undefined ? `&steps=${steps}` : ''}${cfg_scale !== undefined ? `&cfg_scale=${cfg_scale}` : ''}`;
+      const apiUrl = `https://zetsdq.onrender.com/generate-image?prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&sampler=Euler%20a&width=${width}&height=${height}${steps !== undefined ? `&steps=${steps}` : ''}${cfg_scale !== undefined ? `&cfg_scale=${cfg_scale}` : ''}${loraString ? `&loras=${encodeURIComponent(loraString)}` : ''}`;
 
       const response = await axios.get(apiUrl, { responseType: 'stream' });
 
