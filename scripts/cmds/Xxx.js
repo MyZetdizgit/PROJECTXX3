@@ -35,7 +35,27 @@ onStart: async function ({ api, args, event, message }) {
         2: "MidjourneyAnimeStyleXL-v1",
         3: "ExtraDetailerXL-v1",
         4: "DetailTweakerXL-3.0",
-        5: "STYLESPONYXL-RARv0.4Animagine"
+        5: "STYLESPONYXL-RARv0.4Animagine",
+        6: "XLOutlineponysdxlkohaku-v1.0",
+        7: "Pony-RetroAnime-V2",
+        8: "AddMoreDetailsXL-v1.0",
+        9: "AddMoreDetailXL-EnhancesFineTunes-V1.",
+        10: "XLPerfectHandsProject-v1",
+       11: "ExtremelyRealisticStyleXLLoRA-V1.0",
+       12: "AnimeEnhancerXL-v5",
+       13: "DetailedAnimeStyleXL-V01",
+       14: "AddMoreDetailsColorfulEnhancerXL-",
+       15: "EpiC_AnimeDreamHentaiXLPerfectFingers-V10",
+       16: "SkinToneSliderXL-V1",
+       17: "detailer_XL-Ultra",
+       18: "niji5-v6",
+       19: "ENHANCEFacialdetails-SDXL2.0.8",
+       20: "Nakedgirls-V1",
+       21: "CunnilingusXL-0.5",
+        22: "deep_penetrationconceptsliderforponyXL-1.0",
+        23:  "LabiaplastyInniePussyAdjuster-v2.0XLUnp",
+        24:   "MotionSexXL-XL",
+        25: "BreastsSliderXL-V1",
       };
 
       let prompt = '';
