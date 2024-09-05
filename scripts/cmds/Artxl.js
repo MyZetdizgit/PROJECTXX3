@@ -77,7 +77,7 @@ module.exports = {
       }
 
       // Create the API URL using adjusted width and height
-      const apiUrl = `https://zetartxl-xlnq.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
+      const apiUrl = `https://zet4k.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
 
       const response = await axios.get(apiUrl, { responseType: "stream" });
 
