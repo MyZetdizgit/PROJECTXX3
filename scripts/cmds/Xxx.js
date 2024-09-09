@@ -1,10 +1,11 @@
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
+const tinyurl = require('tinyurl'); 
 
 module.exports = {
   config: {
-    name: "xx",
+    name: "xxl",
     version: "2.0",
     credits: "Zetsu",
     cooldowns: 5,
@@ -51,13 +52,15 @@ module.exports = {
           prompt += args[i] + ' ';
         }
       }
+const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n➨ 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝘴𝘵𝘦𝘱𝘴(𝟭-𝟯𝟱) -𝙡 𝘭𝘰𝘳𝘢1,𝘭𝘰𝘳𝘢2 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦 -𝙨 𝘴𝘦𝘦𝘥 \n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7 -s -1\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘳𝘢𝘵𝘪𝘰 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙧𝙖𝙩𝙞𝙤\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘮𝘰𝘥𝘦𝘭𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙢𝙤𝙙𝙚𝙡\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘭𝘰𝘳𝘢𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙡𝙤𝙧𝙖";
       prompt = prompt.trim();
-  if (!prompt) {
-        const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝙨𝙩𝙚𝙥𝙴 -𝙡 𝘭𝘰𝘳𝘢𝘴 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦\n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐫𝐚𝐭𝐢𝐨 : \n[𝙓𝙭 𝙧𝙖𝙩𝙞𝘰]\n\n 𝐏𝐨𝐮𝐫 𝐥𝐞𝐬 𝐦𝐨𝐝𝐞𝐥𝐬 : \n[𝙓𝙭 𝙢𝙤𝘥𝙚𝙡]\n\n Pour les LoRA : \n[𝙓𝙭 𝙡𝘰𝘳𝘢]";
+      if (!prompt) {
         return api.sendMessage(guideMessage, event.threadID, event.messageID);
       }
-
-      if (prompt.toLowerCase() === "ratio") {
+if (prompt.toLowerCase() === "guide") {
+        return api.sendMessage(guideMessage, event.threadID, event.messageID);
+      }
+if (prompt.toLowerCase() === "ratio") {
         const usim = "◉ 𝐃𝐈𝐌𝐄𝐍𝐒𝐈𝐎𝐍𝐒 𝐗𝐗◉ \n\n✧ 𝟑:𝟐 \n✧ 𝟐:𝟑\n✧ 𝟕:𝟒 \n✧ 𝟒:𝟕\n✧ 𝟏:𝟏\n✧ 𝟕:𝟗 \n✧ 𝟗:𝟕\n✧ 𝟏𝟗:𝟏𝟑\n✧ 𝟏𝟑:𝟏𝟗\n✧ 𝟏𝟐:𝟓\n✧ 𝟓:𝟏𝟐";
         return api.sendMessage(usim, event.threadID, event.messageID);
       }
@@ -68,11 +71,10 @@ module.exports = {
       }
 
       if (prompt.toLowerCase() === "lora") {
-        const loraGuide = "◉ 𝐋𝐎𝐑𝐀𝐒 𝐗𝐗 ◉\n\n✧ 𝐒𝐃𝐗𝐋 (𝟏-𝟑𝟎)\n1: Niji Anime Style XL\n2: Niji6 - v6 𝐒𝐒\n3: StylesPony XL - RAR Animagine\n4: Kohaku Outline XL\n5: Pony Retro Anime V2\n6: Anime Enhancer XL v5\n7: Detailed Anime Style XL V01\n8: Niji Background XL v1 - Normal\n9: Niji5 v6\n10: Extremely Realistic Style XL\n\n✧ 𝐃𝐞𝐭𝐚𝐢𝐥𝐬 𝐗𝐋 (𝟏𝟏-𝟐𝟒)\n11: Extra Detailer XL\n12: Detail Tweaker XL 3.0\n13: Add More Details XL\n14: Add More Detail XL \n15: Detailer XL Ultra\n16: Enhance Facial Details SDXL\n17: Colorful Enhancer XL\n18: Photo Enhancer XL\n19: Shadow Correction XL v1.1\n20: Body Weight Slider XL\n21: Skin Tone Slider XL V1\n22: Perfect Hands XL\n23: EpiC XL Perfect Fingers\n\n✧ 𝐍𝐬𝐟𝐰 𝐗𝐋 (𝟐𝟒-𝟑𝟎)\n24: Plunder Hentai Style XL\n25: Naked Girls V1\n26: Cunnilingus XL 0.5\n27: Deep Penetration Concept XL\n28: Labiaplasty Innie Pussy\n29: Motion Sex XL\n30: Breasts Slider XL\n\n✧ 𝐅𝐋𝐔𝐗 (𝟑𝟏-𝟑𝟗)\n31: Flux Anime Style TEST.VERSION\n32: Flux Comics Style T2\n33: Flux Fantasy Detailers V1.0\n34: Midjourney Whisper Flux LoRA\n35: XLabs Flux Realism LoRA v1.0\n36: Flux Realism Woman V2.0\n37: Flux Booba\n38: Flux Perfect Full Round Breasts\n39: Flux Detailer TA v0.1\n\n✧ 𝐒𝐃-𝟏.𝟓 (𝟒𝟎-𝟓𝟖)\n40: Sexy Pose Style V5 Slider\n41: Real Hands XL v1.0\n42: Adds Elements Details V1.1\n43: Better Hands - HANDS\n44: Attractive Eyes SDXL Version\n45: Breasts with Pink Nipples 2.0\n46: Add More Realism V1.0\n47: Detail Enhancer Tweaker LoRA \n48: Add Details Eyes Face Skin V1\n49: Missionary POV V1.0\n50: Oiled Skin SD 1.5 Pony PDXLV1\n51: Hands Repair LoRA V5 \n52: Huge Butt Huge Breasts V1\n53: Nude Woman V2\n54: Oxalis Hentai LoRA V1 \n55: Tentacles SD 1.5 V9.0\n56: Extremely Realistic Style\n57: Add Ultra Details V1\n58: Shinyoiledskin 2.0\n\n****\n59: Xl More Art Real Enhancer\n60: Midjourney Anime Style\n61: Niji Background Xl";
+        const loraGuide = "◉ 𝐋𝐎𝐑𝐀𝐒 𝐗𝐗 ◉\n\n✧ 𝐒𝐃𝐗𝐋 (𝟏-𝟑𝟎)\n1: Niji Anime Style XL\n2: Niji6 - v6\n3: StylesPony XL - RAR Animagine\n4: Kohaku Outline XL\n5: Pony Retro Anime V2\n6: Anime Enhancer XL v5\n7: Detailed Anime Style XL V01\n8: Niji Background XL v1 - Normal\n9: Midjourney Anime Style XL\n10: Extremely Realistic Style XL\n\n✧ 𝐃𝐞𝐭𝐚𝐢𝐥𝐬 𝐗𝐋 (𝟏𝟏-𝟐𝟒)\n11: Extra Detailer XL\n12: Detail Tweaker XL 3.0\n13: Add More Details XL\n14: Add More Detail XL \n15: Detailer XL Ultra\n16: Enhance Facial Details SDXL\n17: Colorful Enhancer XL\n18: Photo Enhancer XL\n19: Shadow Correction XL v1.1\n20: Body Weight Slider XL\n21: Skin Tone Slider XL V1\n22: Perfect Hands XL\n23: EpiC XL Perfect Fingers\n\n✧ 𝐍𝐬𝐟𝐰 𝐗𝐋 (𝟐𝟒-𝟑𝟎)\n24: Plunder Hentai Style XL\n25: Naked Girls V1\n26: Cunnilingus XL 0.5\n27: Deep Penetration Concept XL\n28: Labiaplasty Innie Pussy\n29: Motion Sex XL\n30: Breasts Slider XL\n\n✧ 𝐅𝐋𝐔𝐗 (𝟑𝟏-𝟑𝟗)\n31: Flux Anime Style TEST.VERSION\n32: Flux Comics Style T2\n33: Flux Fantasy Detailers V1.0\n34: Midjourney Whisper Flux LoRA\n35: XLabs Flux Realism LoRA v1.0\n36: Flux Realism Woman V2.0\n37: Flux Booba\n38: Flux Perfect Full Round Breasts\n39: Flux Detailer TA v0.1\n\n✧ 𝐒𝐃-𝟏.𝟓 (𝟒𝟎-𝟓𝟖)\n40: Sexy Pose Style V5 Slider\n41: Real Hands XL v1.0\n42: Adds Elements Details V1.1\n43: Better Hands - HANDS\n44: Attractive Eyes SDXL Version\n45: Breasts with Pink Nipples 2.0\n46: Add More Realism V1.0\n47: Detail Enhancer Tweaker LoRA \n48: Add Details Eyes Face Skin V1\n49: Missionary POV V1.0\n50: Oiled Skin SD 1.5 Pony PDXLV1\n51: Hands Repair LoRA V5 \n52: Huge Butt Huge Breasts V1\n53: Nude Woman V2\n54: Oxalis Hentai LoRA V1 \n55: Tentacles SD 1.5 V9.0\n56: Extremely Realistic Style\n57: Add Ultra Details V1\n58: Shinyoiledskin 2.0\n\n****\n59: Xl More Art Real Enhancer\n60: Midjourney Anime Style\n61: Niji Background Xl\62: Niji5 - v6";
         return api.sendMessage(loraGuide, event.threadID, event.messageID);
       }
-
-      // Create LoRA string
+      // Créer la chaîne LoRA
       let loraString = Object.entries(loraWeights)
         .map(([key, weight]) => `${key}:${weight}`)
         .join(',');
@@ -84,7 +86,10 @@ module.exports = {
       const response = await axios.get(apiUrl);
       const imageUrl = response.data.imageUrl;
 
-      // Download the image and send
+      // Utilisation de TinyURL pour raccourcir l'URL
+      const shortUrl = await tinyurl.shorten(imageUrl);
+
+      // Télécharger l'image et l'envoyer
       const imagePath = path.join(__dirname, 'cache', 'generated_image.png');
       const imageStream = fs.createWriteStream(imagePath);
       
@@ -92,16 +97,19 @@ module.exports = {
       imageResponse.data.pipe(imageStream);
 
       imageStream.on('finish', () => {
-        message.reply({ body: '𝑉𝑜𝑖𝑐𝑖 𝑣𝑜𝑡𝑟𝑒 𝐼𝑚𝑎𝑔𝑒 ✨', attachment: fs.createReadStream(imagePath) });
+        message.reply({
+          body: `𝑉𝑜𝑖𝑐𝑖 𝑣𝑜𝑡𝑟𝑒 𝐼𝑚𝑎𝑔𝑒 \n 𝑳𝒊𝒆𝒏 𝟒𝒌 ✨: \n ${shortUrl}`,
+          attachment: fs.createReadStream(imagePath)
+        });
       });
 
       imageStream.on('error', (err) => {
         console.error("Stream error:", err);
-        api.sendMessage('Error generating image.', event.threadID, event.messageID);
+        api.sendMessage('Erreur lors de la génération de l\'image.', event.threadID, event.messageID);
       });
     } catch (error) {
       console.error(error);
-      api.sendMessage('An error occurred. Please try again later.', event.threadID, event.messageID);
+      api.sendMessage('Une erreur s\'est produite. Veuillez réessayer plus tard.', event.threadID, event.messageID);
     }
   }
 };
