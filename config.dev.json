@@ -1,7 +1,7 @@
 {
 	"facebookAccount": {
-		"email": "adultdizzy54@gmail.com",
-		"password": "HEHEHEDULBAS55",
+		"email": "burgerpink33@gmail.com",
+		"password": "Falonera56",
 		"2FASecret": "",
 		"i_user": "",
 		"proxy": null,
@@ -12,7 +12,7 @@
 	"antiInbox": false,
 	"language": "en",
 	"notesLanguage": "change to your language with ISO 639-1 code, available languages: vi (Vietnamese), en (English)",
-	"nickNameBot": "Nami-Bot",
+	"nickNameBot": "ZoRo-Bot",
 	"prefix": ".",
 	"adminOnly": {
 		"enable": false,
