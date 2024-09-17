@@ -52,15 +52,18 @@ module.exports = {
           prompt += args[i] + ' ';
         }
       }
-const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n➨ 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝘴𝘵𝘦𝘱𝘴(𝟭-𝟯𝟱) -𝙡 𝘭𝘰𝘳𝘢1,𝘭𝘰𝘳𝘢2 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦 -𝙨 𝘴𝘦𝘦𝘥 \n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7 -s -1\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘳𝘢𝘵𝘪𝘰 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙧𝙖𝙩𝙞𝙤\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘮𝘰𝘥𝘦𝘭𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙢𝙤𝙙𝙚𝙡\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘭𝘰𝘳𝘢𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙡𝙤𝙧𝙖";
+
+      const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n➨ 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝘴𝘵𝘦𝘱𝘴(𝟭-𝟯𝟱) -𝙡 𝘭𝘰𝘳𝘢1,𝘭𝘰𝘳𝘢2 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦 -𝙨 𝘴𝘦𝘦𝘥 \n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7 -s -1\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘳𝘢𝘵𝘪𝘰 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙧𝙖𝙩𝙞𝙤\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘮𝘰𝘥𝘦𝘭𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙢𝙤𝙙𝙚𝙡\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘭𝘰𝘳𝘢𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙡𝙤𝙧𝙖";
       prompt = prompt.trim();
       if (!prompt) {
         return api.sendMessage(guideMessage, event.threadID, event.messageID);
       }
-if (prompt.toLowerCase() === "guide") {
+
+      if (prompt.toLowerCase() === "guide") {
         return api.sendMessage(guideMessage, event.threadID, event.messageID);
       }
-if (prompt.toLowerCase() === "ratio") {
+
+      if (prompt.toLowerCase() === "ratio") {
         const usim = "◉ 𝐃𝐈𝐌𝐄𝐍𝐒𝐈𝐎𝐍𝐒 𝐗𝐗◉ \n\n✧ 𝟑:𝟐 \n✧ 𝟐:𝟑\n✧ 𝟕:𝟒 \n✧ 𝟒:𝟕\n✧ 𝟏:𝟏\n✧ 𝟕:𝟗 \n✧ 𝟗:𝟕\n✧ 𝟏𝟗:𝟏𝟑\n✧ 𝟏𝟑:𝟏𝟗\n✧ 𝟏𝟐:𝟓\n✧ 𝟓:𝟏𝟐";
         return api.sendMessage(usim, event.threadID, event.messageID);
       }
@@ -89,8 +92,16 @@ if (prompt.toLowerCase() === "ratio") {
       // Utilisation de TinyURL pour raccourcir l'URL
       const shortUrl = await tinyurl.shorten(imageUrl);
 
-      // Télécharger l'image et l'envoyer
+      // Définir le chemin de l'image
       const imagePath = path.join(__dirname, 'cache', 'generated_image.png');
+
+      // Vérifier si le répertoire 'cache' existe et le créer s'il n'existe pas
+      const cacheDir = path.join(__dirname, 'cache');
+      if (!fs.existsSync(cacheDir)) {
+        fs.mkdirSync(cacheDir, { recursive: true });
+      }
+
+      // Télécharger l'image et l'envoyer
       const imageStream = fs.createWriteStream(imagePath);
       
       const imageResponse = await axios.get(imageUrl, { responseType: 'stream' });
@@ -98,7 +109,7 @@ if (prompt.toLowerCase() === "ratio") {
 
       imageStream.on('finish', () => {
         message.reply({
-          body: `𝑉𝑜𝑖𝑐𝑖 𝑣𝑜𝑡𝑟𝑒 𝐼𝑚𝑎𝑔𝑒 ✨\n 𝑳𝒊𝒆𝒏 𝟒𝒌 🎗️: \n ${shortUrl}`,
+          body: `𝑉𝑜𝑖𝑐𝑖 𝑣𝑜𝑡𝑟𝑒 𝐼𝑚𝑎𝑔𝑒 🌟\n 𝑳𝒊𝒆𝒏 𝟒𝒌 ✨: \n ${shortUrl}`,
           attachment: fs.createReadStream(imagePath)
         });
       });
